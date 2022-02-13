@@ -1,4 +1,5 @@
 const express = require('express');
+const res = require('express/lib/response');
 const morgan = require('morgan');
 const nunjucks = require('nunjucks');
 const path = require('path');
@@ -33,6 +34,10 @@ nunjucks.configure(app.get('views'), {
 app.get('/', (request, response) => {
 	const options = { pageTitle: 'Homepage' };
 	return response.render('home', options);
+});
+
+app.post('/', (request, response) => { // Add post request handler for the form
+  response.send("submitted!")
 });
 
 app.listen(PORT, () => {
